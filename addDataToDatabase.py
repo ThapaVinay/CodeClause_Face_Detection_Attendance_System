@@ -19,7 +19,7 @@ data = {
         "total_attendance" : 6,
         "standing" : "G",
         "year" : 3,
-        "last_attendence_time" : "2023-07-13 00:54:34"
+        "last_attendance_time" : "2023-07-13 00:54:34"
 
     },
 
@@ -30,7 +30,7 @@ data = {
         "total_attendance" : 6,
         "standing" : "G",
         "year" : 3,
-        "last_attendence_time" : "2023-07-13 00:54:34"
+        "last_attendance_time" : "2023-07-13 00:54:34"
 
     },
 
@@ -41,7 +41,7 @@ data = {
         "total_attendance" : 6,
         "standing" : "G",
         "year" : 3,
-        "last_attendence_time" : "2023-07-13 00:54:34"
+        "last_attendance_time" : "2023-07-13 00:54:34"
 
     },
 
@@ -52,7 +52,7 @@ data = {
         "total_attendance" : 6,
         "standing" : "G",
         "year" : 3,
-        "last_attendence_time" : "2023-07-13 00:54:34"
+        "last_attendance_time" : "2023-07-13 00:54:34"
 
     }
 }
