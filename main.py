@@ -124,7 +124,7 @@ while True:
                 secondsElapsed = (datetime.now() - datetimeObject).total_seconds()
                 # print(secondsElapsed)
 
-                if secondsElapsed > 6:
+                if secondsElapsed > 60:
                     ref = db.reference(f'Students/{id}')
                     studentInfo['total_attendance'] += 1
                     ref.child('total_attendance').set(studentInfo['total_attendance'])

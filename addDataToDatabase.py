@@ -33,6 +33,16 @@ data = {
         "last_attendance_time" : "2023-07-13 00:54:34"
 
     },
+    "963852" : {
+        "name" : "Elon musk",
+        "major" : "tesla",
+        "starting_year" : 2021,
+        "total_attendance" : 6,
+        "standing" : "G",
+        "year" : 3,
+        "last_attendance_time" : "2023-07-13 00:54:34"
+
+    },
 }
 
 for key, value in data.items():

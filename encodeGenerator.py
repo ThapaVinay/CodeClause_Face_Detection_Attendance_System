@@ -43,16 +43,16 @@ def findEncodings(imagesList):
     
     return encodeList
 
-print("Encoding Started ...")
+# print("Encoding Started ...")
 encodeListKnown = findEncodings(imgList)
 encodeListKnownWithIds = [encodeListKnown, studentIds]
-print("Encoding completed ...")
+# print("Encoding completed ...")
 
-print(encodeListKnownWithIds)
+# print(encodeListKnownWithIds)
 
 
 file = open("encodeFile.p", "wb")
 pickle.dump(encodeListKnownWithIds, file)  # converts into serialised form for export over network
 file.close()
-print("File saved successfully")
+# print("File saved successfully")
 
