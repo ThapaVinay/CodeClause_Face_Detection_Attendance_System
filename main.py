@@ -4,6 +4,12 @@
     3. face-recognition
     4. cvzone
     5. opencv 
+
+    Modes :
+    0. Marked
+    1. Already Marked
+    2. Details window
+    3. Active
 '''
 
 import numpy as np
@@ -71,31 +77,33 @@ while True:
     # overlaying webcam on the image
     imgBackground[162:162+480, 55:55+640] = img
     imgBackground[44:44+633, 808:808+414] = imgModeList[modeType]
+    cv2.waitKey(1)
 
     if faceCurFrame:
-        for encodeFace, faceLoc in zip(encodeCurFrame, faceCurFrame):
-            matches = face_recognition.compare_faces(encodeListKnown, encodeFace)
-            # finds the euclidean distance between the encodings
-            faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)
-            # print("matches", matches)
-            # print("matches", faceDis)
+        if(counter ==0 ):
+            for encodeFace, faceLoc in zip(encodeCurFrame, faceCurFrame):
+                matches = face_recognition.compare_faces(encodeListKnown, encodeFace)
+                # finds the euclidean distance between the encodings
+                faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)
+                # print("matches", matches)
+                # print("matches", faceDis)x``
 
-            matchIndex = np.argmin(faceDis)
-            if (matches[matchIndex]):
-                # print(studentIds[matchIndex])
+                matchIndex = np.argmin(faceDis)
+                if (matches[matchIndex]):
+                    # print(studentIds[matchIndex])
 
-                y1, x2, y2, x1 = faceLoc
-                y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
-                bbox = 55 + x1, 162 + y1, x2-x1, y2-y1
-                imgBackground = cvzone.cornerRect(imgBackground, bbox, rt=0)
-                id = studentIds[matchIndex]
+                    y1, x2, y2, x1 = faceLoc
+                    y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
+                    bbox = 55 + x1, 162 + y1, x2-x1, y2-y1
+                    imgBackground = cvzone.cornerRect(imgBackground, bbox, rt=0)
+                    id = studentIds[matchIndex]
 
-                if counter == 0:
-                    cvzone.putTextRect(imgBackground, "Loading", (275,400))
-                    cv2.imshow("Face Attendance", imgBackground)
-                    cv2.waitKey(1)
-                    counter = 1
-                    modeType = 2
+                    if counter == 0:
+                        cvzone.putTextRect(imgBackground, "Loading", (275,400))
+                        cv2.imshow("Face Attendance", imgBackground)
+                        cv2.waitKey(1)
+                        counter = 1
+                        modeType = 2
 
         if counter != 0:
 
@@ -116,7 +124,7 @@ while True:
                 secondsElapsed = (datetime.now() - datetimeObject).total_seconds()
                 # print(secondsElapsed)
 
-                if secondsElapsed > 60:
+                if secondsElapsed > 6:
                     ref = db.reference(f'Students/{id}')
                     studentInfo['total_attendance'] += 1
                     ref.child('total_attendance').set(studentInfo['total_attendance'])
@@ -129,6 +137,7 @@ while True:
             if modeType != 1:
                 if 10 < counter < 20:
                     modeType = 0
+
                 imgBackground[44:44+633, 808:808+414] = imgModeList[modeType]
 
                 if counter <= 10:
@@ -146,7 +155,6 @@ while True:
                     cv2.putText(imgBackground, str(studentInfo['name']), (808+offset, 445), cv2.FONT_HERSHEY_COMPLEX, 1, (50,50,50), 1)
 
                     # setting the image
-                    imgStudent = cv2.resize(imgStudent, (216,216))
                     imgBackground[175:175+216, 909:909+216] = imgStudent
 
                 counter += 1
